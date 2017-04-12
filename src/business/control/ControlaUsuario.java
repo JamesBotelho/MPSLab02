@@ -21,6 +21,7 @@ public class ControlaUsuario {
     public static void adicionaUsuario(String login, String senha) throws LoginException, SenhaException, InfraException {
         ValidaCampos.vLogin(login);
         ValidaCampos.vSenha(senha);
+        Autenticacao.loginExistente(login);
         Usuarios u = new Usuarios(login, senha);
         users.put(login, u);
         try{
@@ -44,10 +45,15 @@ public class ControlaUsuario {
         }
     }
     
-    public static void logaUsuario(String login, String senha) throws SenhaException, LoginException{
+    public static String logaUsuario(String login, String senha) throws SenhaException, LoginException{
         Usuarios tmp;
         Autenticacao.loginExistente(login);
         Autenticacao.comparaSenha(login, senha);
         tmp = users.get(login);
+        return tmp.toString();
+    }
+    
+    public static void iniciaSistema() throws InfraException{
+        users = Persistencia.carregaUsuarios();
     }
 }
