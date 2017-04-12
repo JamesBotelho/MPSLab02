@@ -13,7 +13,7 @@ public class InfraException extends Exception {
     private String mensagem;
     
     public InfraException(){
-        mensagem = "Erro na manipulação do arquivo";
+        this.mensagem = "Erro na manipulação do arquivo";
     }
     
     public InfraException(String mensagem){
