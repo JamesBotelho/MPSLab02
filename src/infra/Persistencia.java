@@ -30,20 +30,26 @@ public class Persistencia implements Serializable {
     public static void carregaUsuarios() throws InfraException {
         try {
             readUsers = new FileInputStream("users.dat");
+            readObj = new ObjectInputStream(readUsers);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Persistencia.class.getName()).log(Level.SEVERE, null, ex);
             throw new InfraException("Não foi possível iniciar o sistema\nTente novamente mais tarde");
-        }
-        
-        try {
-            readObj = new ObjectInputStream(readUsers);
         } catch (IOException ex) {
             Logger.getLogger(Persistencia.class.getName()).log(Level.SEVERE, null, ex);
             throw new InfraException("Não foi possível iniciar o sistema\nTente novamente mais tarde");
         }
     }
     
-    public static void salvaUsuarios(){
-        
+    public static void salvaUsuarios() throws InfraException {
+        try{
+            writeUsers = new FileOutputStream("users.dat");
+            writeObj = new ObjectOutputStream(writeUsers);
+        }catch (FileNotFoundException ex){
+            Logger.getLogger(Persistencia.class.getName()).log(Level.SEVERE, null, ex);
+            throw new InfraException("Não foi possível completar o cadastro\nTente novamente mais tarde");
+        }catch (IOException ex){
+            Logger.getLogger(Persistencia.class.getName()).log(Level.SEVERE, null, ex);
+            throw new InfraException("Não foi possível completar o cadastro\nTente novamente mais tarde");
+        }
     }
 }
