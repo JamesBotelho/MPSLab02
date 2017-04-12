@@ -35,6 +35,9 @@ public class Usuarios implements Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "login=" + login + ", senha=" + senha + '}';
+    }
 }

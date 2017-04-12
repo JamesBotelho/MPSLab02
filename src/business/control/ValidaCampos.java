@@ -11,7 +11,7 @@ package business.control;
  */
 public class ValidaCampos {
 
-    public static void vLogin(String login) throws LoginException {
+    protected static void vLogin(String login) throws LoginException {
         if (login.trim().isEmpty()) { //Verifica se o login é vazio
             throw new LoginException("O campo login não pode ficar em branco!");
         } else if (login.length() > 20) { //Verifica se o login possui mais de 20 caracteres
@@ -21,7 +21,7 @@ public class ValidaCampos {
         }
     }
 
-    public static void vSenha(String senha) throws SenhaException {
+    protected static void vSenha(String senha) throws SenhaException {
         boolean correto;
 
         if (senha.trim().isEmpty()) {
