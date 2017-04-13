@@ -59,6 +59,11 @@ public class Cad extends javax.swing.JFrame {
         });
 
         jButton3.setText("Ajuda");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,6 +127,13 @@ public class Cad extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        String ajuda = "O login deve possuir no máximo 20 caracteres, e não pode conter números\n"
+                        + "A senha deve possuir de 8 a 12 caracteres, e deve possuir letras e números\ncom ao menos 2 números";
+        JOptionPane.showMessageDialog(this, ajuda, "ajuda", JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

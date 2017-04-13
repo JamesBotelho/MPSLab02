@@ -26,13 +26,12 @@ public class InterfaceUsuario {
     }
     
     protected static String logaSistema(String login, String senha){
-        String mensagem;
         try{
-            mensagem = ControlaUsuario.logaUsuario(login, senha);
+            ControlaUsuario.logaUsuario(login, senha);
         }catch (LoginException | SenhaException ex){
             return ex.getMessage();
         }
-        return mensagem;
+        return "Usuário logado com sucesso";
     }
     
     protected static String deletaSistema(String login, String senha){

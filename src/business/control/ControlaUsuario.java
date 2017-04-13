@@ -21,14 +21,13 @@ public class ControlaUsuario {
     public static void adicionaUsuario(String login, String senha) throws LoginException, SenhaException, InfraException {
         ValidaCampos.vLogin(login);
         ValidaCampos.vSenha(senha);
-        Autenticacao.loginExistente(login);
         Usuarios u = new Usuarios(login, senha);
         users.put(login, u);
-        try{
+        try {
             Persistencia.salvaUsuarios(users);
-        }catch(InfraException ex){
-            users.remove(login);
-            throw ex;
+        } catch (InfraException ex) {   //Tenta salvar os usuários no arquivo
+            users.remove(login);        //Caso ocorra algum erro, remove o usuário da memória
+            throw ex;                   //Relança a exceção para o usuário
         }
     }
 
@@ -44,16 +43,13 @@ public class ControlaUsuario {
             throw e;                                //Relança a exceção acima
         }
     }
-    
-    public static String logaUsuario(String login, String senha) throws SenhaException, LoginException{
-        Usuarios tmp;
+
+    public static void logaUsuario(String login, String senha) throws SenhaException, LoginException {
         Autenticacao.loginExistente(login);
         Autenticacao.comparaSenha(login, senha);
-        tmp = users.get(login);
-        return tmp.toString();
     }
-    
-    public static void iniciaSistema() throws InfraException{
+
+    public static void iniciaSistema() throws InfraException {
         users = Persistencia.carregaUsuarios();
     }
 }

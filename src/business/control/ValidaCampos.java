@@ -18,6 +18,8 @@ public class ValidaCampos {
             throw new LoginException("O login não pode ter mais de 20 caracteres!");
         } else if (login.matches(".*\\d.*")) { // Verifica se o login possui dígitos
             throw new LoginException("O login não pode conter números");
+        } else if(ControlaUsuario.users.containsKey(login)){
+            throw new LoginException("O login inserido já existe");
         }
     }
 
